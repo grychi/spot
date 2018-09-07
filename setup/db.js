@@ -72,8 +72,7 @@ db.createCollection("Events", {
                     bsonType: "int"
                 },
                 duration: {
-                    bsonType: "int",
-                    default: 30
+                    bsonType: "int"
                 }
             }
         }
