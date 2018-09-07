@@ -1,0 +1,26 @@
+{
+  "name": "spot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grychi/spot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grychi/spot/issues"
+  },
+  "homepage": "https://github.com/grychi/spot#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "serve": "^10.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "mongodb": "^3.0.10"
+  }
+}
