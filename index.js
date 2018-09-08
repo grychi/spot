@@ -104,7 +104,10 @@ app.post('/register', function (req, res) {
         else {
             db.collection("Users").insertOne(tmp, function (err, result) {
                 if (err) throw err;
-                res.send(resDefault);
+                db.collection("Profiles").insertOne({ username: req.body.username }, function (err, result) {
+                    if (err) throw err;
+                    res.send(resDefault);
+                });
             });
         };
     });
