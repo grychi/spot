@@ -166,7 +166,7 @@ function showResults(e) {
         <div class="header">
             <div class="icon"><img src="data:image/png;base64, ` + i.image + `"></div>
             <h4 class="title">` + i.name + `</h4>
-            <div class="timestamp">` + i.timestamp + `</div>
+            <div class="timestamp">` + moment(i.timestamp).fromNow() + `</div>
             <div class="attendees">
                 <div class="attendee"></div>
                 <div class="attendee"></div>
