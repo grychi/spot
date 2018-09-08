@@ -1,76 +1,86 @@
 <!doctype html>
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>spot</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<head>
+	<meta charset="utf-8">
+	<title>spot</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	 crossorigin="anonymous">
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="style.css">
-	</head>
+	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 
-	<body>
-		<!-- navbar -->
-		<nav class="navbar navbar-default navbar-fixed-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="navbar-brand" href="#">SPOT</a>
-	        </div>
-	        <div id="navbar" class="navbar-collapse collapse">
-	         
-	          <ul class="nav navbar-nav navbar-right">
-	            <!-- <li><a href="../navbar/">Default</a></li> -->
-	            <li>
-	            	<form class="form-inline my-2 my-lg-0">
-				      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				    </form>
-	            </li>
-	          </ul>
-	        </div>
-	      </div>
-    	</nav>
-    	<div id="map"></div>
-    	<div id="side">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/index.js"></script>
+</head>
 
-    		<div class = "activity">
-    			<div class="header">
-    				<div class="icon"><img src="http://houseofbots.com/images/news/1373/cover.png" style="width:100px"></div>
-    				<h1 class="title">penn apps hackathon</h1></div>
-    			</div>
-    			<p class="description">
-    				In the context of a hackathon, the word "hack" is used to describe how multiple technologies can be used together in a new and innovative way. Teams of up to four people spend the weekend working on innovative software and hardware solutions to real-world problems.
-    			</p>
-    			<p class="">
-    				UPenn
-    			</p>
-    			<p class="attendees">
-    				first person, second person, third person...and # more
-    			</p>
-    			<p class="tags">
-    			</p>
-    			<a href="#">
-    				Join now!
-    			</a>
-    		</div>
+<body>
+	<!-- navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				 aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">SPOT</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
 
-    	</div>
+				<ul class="nav navbar-nav navbar-right">
+					<!-- <li><a href="../navbar/">Default</a></li> -->
+					<li>
+						<form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="side">
+		<div class="activity">
+			<div class="header">
+				<div class="icon"><img src="http://houseofbots.com/images/news/1373/cover.png" style="width:100px"></div>
+				<h1 class="title">penn apps hackathon</h1>
+			</div>
+		</div>
+		<p class="description">
+			In the context of a hackathon, the word "hack" is used to describe how multiple technologies can be used together in
+			a new and innovative way. Teams of up to four people spend the weekend working on innovative software and hardware
+			solutions to real-world problems.
+		</p>
+		<p class="">
+			UPenn
+		</p>
+		<p class="attendees">
+			first person, second person, third person...and # more
+		</p>
+		<p class="tags">
+		</p>
+		<a href="#">
+			Join now!
+		</a>
+	</div>
 
+	<div id="map"></div>
 
-	</body>
+	</div>
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAiaGvlKOdOpB-KHpiOmIg3DQZBY_oGp0&callback=initMap"></script>
+
+</body>
 
 </html>
