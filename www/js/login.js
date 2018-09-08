@@ -3,8 +3,8 @@ var baseUrl = "http://localhost:8012"
 document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("continueBtn").addEventListener("click", function (c) {
         var tmp = {
-            username: document.getElementById("username"),
-            password: document.getElementById("password")
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
         }
         postJSON(tmp, baseUrl + "/login", function (res) {
             if (res.success) {
