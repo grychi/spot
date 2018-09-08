@@ -8,6 +8,8 @@ var crypto = require('crypto');
 app.use(bodyParser.json({ limit: '8mb' }));
 app.use(cors());
 
+app.use(express.static(__dirname + '/www'));
+
 var port = 8012;
 var mongodb = 'mongodb://localhost:27017/';
 var db;
@@ -20,10 +22,10 @@ mongoClient.connect(mongodb, function (err, client) {
 });
 
 var resDefault = {
-    "success": "true"
+    "success": true
 }
 var resError = {
-    "success": "false",
+    "success": false,
     "error": "Unknown error. Please try again."
 }
 
@@ -38,6 +40,10 @@ function errWrap(str) {
     res.error = str;
     return res;
 }
+
+app.get('/login', function (req, res) {
+    res.sendFile(__dirname + "/www/login.html");
+});
 
 app.post('/login', function (req, res) {
     db.collection("Users").findOne({ username: req.body.username }, function (err, result) {
@@ -181,9 +187,9 @@ app.get('/getEvents', function (req, res) {
 
 app.get('/getUsers', function (req, res) {
     // return all the users
-    db.collection("Users").distinct("username", function (err, result){
+    db.collection("Users").distinct("username", function (err, result) {
         if (err) throw err;
-        res.send(result); 
+        res.send(result);
     });
 });
 
