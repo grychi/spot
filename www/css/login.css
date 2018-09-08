@@ -26,10 +26,18 @@ a, a:hover {
     font-weight: bold;
     color: #00BCD4;
 }
-
 .btn:hover {
     background-color: #00BCD4;
     color: white;
+}
+.btn:hover > a {
+    color: white;
+}
+.btn a:hover {
+    color: white;
+}
+.btn a {
+	color: #00bcd4;
 }
 
 #loginContainer {

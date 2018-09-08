@@ -40,7 +40,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <div id="regBtn" class="btn"> <a href= "register.html">Register</a></div>
+                        <div id="regBtn" class="btn"> <a href="register.html">Register</a></div>
 
                     </li>
                     <li>
@@ -59,6 +59,15 @@
             <input type="password" id="password" placeholder="Password" spellcheck="false" required><br>
             <div id="continueBtn" class="btn">Login</div>
         </div>
+    </div>
+
+    <div id="toast">
+        <div id="closeToast" onclick="hideToast()">
+            <i class="material-icons">
+                close
+            </i>
+        </div>
+        <div id="tMessage"></div>
     </div>
 
 </body>

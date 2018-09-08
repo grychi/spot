@@ -6,6 +6,7 @@
     margin: 6em auto;
     position: relative;
     border-bottom: solid 3px #00bcd4;
+    border-radius: 0.5em;
 }
 
 #regContainer h4 {
