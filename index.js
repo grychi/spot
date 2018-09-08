@@ -169,15 +169,22 @@ app.post('/joinEvent', function (req, res) {
     });
 });
 
-
 app.get('/getEvents', function (req, res) {
     //return all events 
     db.collection("Events").find({}).toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
+        // console.log(result);
         res.send(resWrap(result));
     });
 
+});
+
+app.get('/getUsers', function (req, res) {
+    // return all the users
+    db.collection("Users").distinct("username", function (err, result){
+        if (err) throw err;
+        res.send(result); 
+    });
 });
 
 app.listen(port, function () {
