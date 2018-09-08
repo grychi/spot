@@ -152,7 +152,7 @@ form.form-inline.my-2.my-lg-0 {
 	color: white;
 }
 
-#createBtn {
+#createBtn, #userBtn {
 	background: white;
 	border: solid 3px #00bcd4;
 	height: 2em;
@@ -168,6 +168,10 @@ form.form-inline.my-2.my-lg-0 {
 #createBtn:hover {
 	background: #00bcd4;
 	color: white;
+}
+
+#userBtn {
+	width:auto;
 }
 
 .location, .creator {
@@ -266,6 +270,19 @@ input[type=file] {
 	height:100px;
 }
 
+.event {
+	min-height: 100px;
+}
+
+.event img {
+	width: 100px;
+	height: 100px;
+}
+
+.event > .content {
+    margin-left: 26px;
+    display: inline-block;
+}
 
 @keyframes loading {
     0% {
