@@ -205,6 +205,13 @@ button {
     font-weight: bold;
 }
 
+.modal-body {
+    position: relative;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
 input[type=file] {
     display: inline-block;
     height: 34px;
@@ -302,17 +309,26 @@ input[type=file] {
 
 .event {
 	min-height: 100px;
+	margin-bottom:5px;
+	clear:both;
 }
 
 .event img {
-	width: 100px;
-	height: 100px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    float: left;
 }
 
 .event > .content {
+    float: left;
     margin-left: 26px;
     display: inline-block;
+<<<<<<< HEAD
 >>>>>>> b2b321ff5e9d912c77b467f3358015e274b2fe01
+=======
+    margin-top: -15px;
+>>>>>>> 0ba17ebaf1312012e95fd98713e0e7a0538ba4d4
 }
 
 @keyframes loading {

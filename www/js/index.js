@@ -3,9 +3,8 @@ var map;
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
     
-    /* if (!window.localStorage.getItem("token")) {
+     if (!window.localStorage.getItem("token")) {
         window.location.href = "login.html"
-<<<<<<< HEAD
     };
 
     var slider = document.getElementById("durationSlider");
@@ -14,11 +13,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     slider.oninput = function() {
         output.innerHTML = this.value + " minutes";
-}
-=======
-    }; */
->>>>>>> b2b321ff5e9d912c77b467f3358015e274b2fe01
-})
+    }
+}); 
+
 
 function showLoading() {
     document.getElementById("loading-contain").style.display = "block";
