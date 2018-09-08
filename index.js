@@ -114,10 +114,11 @@ app.post('/register', function (req, res) {
 });
 
 app.post('/createEvent', function (req, res) {
+    var d = new Date();
     var tmp = {
         id: generateUUID(),
         creator: req.body.username,
-        timestamp: new Date(),
+        timestamp: d.getTime(),
         status: 'active',
         name: req.body.eventname,
         image: req.body.image,
