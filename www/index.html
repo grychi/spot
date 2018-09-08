@@ -19,6 +19,9 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	 crossorigin="anonymous"></script>
+
+	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap-tagsinput.css">
@@ -44,7 +47,9 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<!-- <li><a href="../navbar/">Default</a></li> -->
+					<li>
+						Welcome <a data-toggle="modal" data-name="michelle" data-target="#michelle" style="display:inline-block">Michelle</a>
+					</li>
 					<li>
 						<button type="button" id="createBtn" data-toggle="modal" data-target="#createEvent">+</button>
 					</li>
@@ -63,6 +68,46 @@
 		</div>
 	</nav>
 
+	<!--profile -->
+	<div id="michelle" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">michelle</h4>
+				</div>
+				<div class="modal-body">
+					<div class="event">
+						<img src="http://2014s.pennapps.com/build/images/logo/light2.png">
+						<div class="content">
+							<h3>PennApps</h3>
+							<p class="timeframe"><i class="fas fa-calendar-alt" style="margin-right:5px;"></i>09/07/2018 - 09/09/2018</p>
+							<p class="address"><i class="fas fa-map-marker-alt" style="margin-right: 5px"></i>Philadelphia, PA 19104</p>
+						</div>
+					</div>
+					<div class="event">
+						<img src="http://2014s.pennapps.com/build/images/logo/light2.png">
+						<div class="content">
+							<h3>PennApps</h3>
+							<p class="timeframe"><i class="fas fa-calendar-alt" style="margin-right:5px;"></i>09/07/2018 - 09/09/2018</p>
+							<p class="address"><i class="fas fa-map-marker-alt" style="margin-right: 5px"></i>Philadelphia, PA 19104</p>
+						</div>
+					</div>
+					<div class="event">
+						<img src="http://2014s.pennapps.com/build/images/logo/light2.png">
+						<div class="content">
+							<h3>PennApps</h3>
+							<p class="timeframe"><i class="fas fa-calendar-alt" style="margin-right:5px;"></i>09/07/2018 - 09/09/2018</p>
+							<p class="address"><i class="fas fa-map-marker-alt" style="margin-right: 5px"></i>Philadelphia, PA 19104</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<!-- create event form -->
 	<div id="createEvent" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -79,6 +124,12 @@
 					<div class="form-group">
 						<label for="event-photo">Upload a photo for your event:</label>
 						<input type="file" class="form-control-file" id="event-photo" aria-describedby="fileHelp">
+					</div>
+					<div class="form-group">
+						<div class="slidecontainer">
+						  <input type="range" min="5" max="100" value="50" class="slider" id="durationSlider">
+						</div>
+						<div id="output"></div>
 					</div>
 					<div class="form-group" style="margin-top:5px">
 						<label for="event-description">Describe your event:</label>

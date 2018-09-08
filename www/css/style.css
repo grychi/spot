@@ -152,7 +152,7 @@ form.form-inline.my-2.my-lg-0 {
 	color: white;
 }
 
-#createBtn {
+#createBtn, #userBtn {
 	background: white;
 	border: solid 3px #00bcd4;
 	height: 2em;
@@ -168,6 +168,10 @@ form.form-inline.my-2.my-lg-0 {
 #createBtn:hover {
 	background: #00bcd4;
 	color: white;
+}
+
+#userBtn {
+	width:auto;
 }
 
 .location, .creator {
@@ -199,6 +203,13 @@ button {
     color: #00BCD4;
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.modal-body {
+    position: relative;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: scroll;
 }
 
 input[type=file] {
@@ -266,6 +277,55 @@ input[type=file] {
 	height:100px;
 }
 
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #00BCD4;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #00BCD4;
+    cursor: pointer;
+}
+
+.event {
+	min-height: 100px;
+	margin-bottom:5px;
+	clear:both;
+}
+
+.event img {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    float: left;
+}
+
+.event > .content {
+    float: left;
+    margin-left: 26px;
+    display: inline-block;
+    margin-top: -15px;
+}
 
 @keyframes loading {
     0% {

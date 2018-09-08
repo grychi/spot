@@ -3,10 +3,20 @@ var baseUrl = "http://10.251.80.142:8012"
 
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
-    if (!window.localStorage.getItem("token")) {
+    
+     if (!window.localStorage.getItem("token")) {
         window.location.href = "login.html"
     };
-})
+
+    var slider = document.getElementById("durationSlider");
+    var output = document.getElementById("output");
+    output.innerHTML = slider.value + " minutes"; 
+
+    slider.oninput = function() {
+        output.innerHTML = this.value + " minutes";
+    }
+}); 
+
 
 function showLoading() {
     document.getElementById("loading-contain").style.display = "block";
