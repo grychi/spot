@@ -11,3 +11,7 @@
 #regContainer h4 {
     margin: 0.5em;
 }
+
+a, a:hover {
+    text-decoration: none;
+}
