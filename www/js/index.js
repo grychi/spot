@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     if (!window.localStorage.getItem("token")) {
         window.location.href = "login.html"
     };
+
+    var slider = document.getElementById("durationSlider");
+    var output = document.getElementById("output");
+    output.innerHTML = slider.value + " minutes"; 
+
+    slider.oninput = function() {
+        output.innerHTML = this.value + " minutes";
+}
 })
 
 function showLoading() {

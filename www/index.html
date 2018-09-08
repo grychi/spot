@@ -80,6 +80,12 @@
 						<label for="event-photo">Upload a photo for your event:</label>
 						<input type="file" class="form-control-file" id="event-photo" aria-describedby="fileHelp">
 					</div>
+					<div class="form-group">
+						<div class="slidecontainer">
+						  <input type="range" min="5" max="100" value="50" class="slider" id="durationSlider">
+						</div>
+						<div id="output"></div>
+					</div>
 					<div class="form-group" style="margin-top:5px">
 						<label for="event-description">Describe your event:</label>
 						<textarea class="form-control" id="event-description" rows="3"></textarea>
