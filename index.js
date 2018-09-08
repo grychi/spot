@@ -93,6 +93,74 @@ app.post('/register', function (req, res) {
     });
 });
 
+app.post('/createEvent', function(req, res) {
+    var tmp = {
+        creator: req.body.username,
+        status: true,
+        name: req.body.eventname,
+        description:req.body.description,
+        tags: req.body.tags,
+        location: req.body.location,
+        attendees:[],
+        max: req.body.max,
+        duration: req.body.duration
+    }
+
+    db.collection("Events").insertOne(tmp, function(err, res) {
+        if (err) throw err;
+        res.send(resDefault);
+    });
+
+});
+
+app.post('/closeEvent', function(req,res){
+    var tmp = {
+            creator: req.body.username,
+            status: true,
+            name: req.body.eventname,
+            description:req.body.description,
+            tags: req.body.tags,
+            location: req.body.location,
+            attendees:req.body.attendees,
+            max: req.body.max,
+            duration: req.body.duration
+        }
+    db.collection("Events").findOne(tmp, function(err, result){
+        if (err) throw err;
+        
+        db.collection("Events").deleteOne(tmp, function(err, res){
+            if (err) throw err; 
+            res.send(resDefault);
+        });
+    });
+});
+
+app.post('/joinEvent', function(req, res){
+
+    var tmp = {
+        username:req.body.username
+
+    }
+    var eventName = req.body.eventname;
+    // update attendees in evrnts
+    db.collection("Events").updateOne(eventName, function(err, result){
+        if (err) throw err; 
+        {addToSet: { attendees: username:req.body.username }}
+
+    });
+    // update attended 
+    db.collection("Profiles").updateOne(tmp, function(err, result){
+        if (err) throw err; 
+        {addToSet: { attended: username:req.body.eventname }}
+
+    });
+});
+
+
+app.post('/search', function(req, res){
+
+});
+
 app.listen(port, function () {
     // console.log('index.js');
 });
