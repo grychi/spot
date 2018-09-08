@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
         else {
             console.log("Passwords Match!!!");
-            
+            toLogin();
+
         }
     });
     document.addEventListener('keypress', function (e) {

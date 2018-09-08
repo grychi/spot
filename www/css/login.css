@@ -9,6 +9,9 @@ body {
 input {
     padding: 0.5em;
 }
+a, a:hover {
+    text-decoration: none;
+}
 
 .btn, input {
     background-color: white;
