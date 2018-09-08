@@ -107,7 +107,7 @@ app.post('/createEvent', function (req, res) {
         duration: req.body.duration
     }
 
-    db.collection("Events").insertOne(tmp, function (err, res) {
+    db.collection("Events").insertOne(tmp, function (err, result) {
         if (err) throw err;
         res.send(resDefault);
     });
@@ -115,7 +115,15 @@ app.post('/createEvent', function (req, res) {
 });
 
 app.post('/closeEvent', function (req, res) {
-
+    db.collection("Events").findOne({id:req.body.eventid}, function (err, result){
+        if (err) throw err;
+        else {
+            db.collection("Events").updateOne({id:req.body.eventid}, { $set: {status:"expired" } }, function(err, result){
+                if (err) throw err;
+                res.send(resDefault); 
+            });
+        }
+    });
 });
 
 app.post('/joinEvent', function (req, res) {
@@ -132,12 +140,14 @@ app.post('/joinEvent', function (req, res) {
                 res.send(resDefault);
             });
             // update attended
-            /*
-            db.collection("Profiles").updateOne({username: req.body.username},  function (err, result) {
+            var attended = result.attended;
+            attended.push(req.body.eventid); 
+            db.collection("Profiles").updateOne({username: req.body.username}, {attended: attended}, function (err, result) {
                 if (err) throw err;
+                res.send(resDefault);
 
             });
-            */
+            
         }
     })
 });
