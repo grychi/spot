@@ -251,7 +251,22 @@ input[type=file] {
     stroke: #00bcd4;
     fill: transparent;
 }
-  
+
+.navbar-brand>img {
+    display: inline;
+    margin-right: 5px;
+    margin-top: -5px;
+}
+
+#regContainer, #loginContainer {
+	text-align:center;
+}
+
+#regContainer img, #loginContainer img {
+	height:100px;
+}
+
+
 @keyframes loading {
     0% {
       transform: rotate(0);
