@@ -125,6 +125,7 @@ app.post('/createEvent', function (req, res) {
         description: req.body.description,
         tags: req.body.tags,
         location: req.body.location,
+        address: req.body.address,
         attendees: [],
         max: req.body.max,
         duration: req.body.duration
