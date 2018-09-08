@@ -1,37 +1,36 @@
 var baseUrl = "http://10.251.80.142:8012"
 
-function passOn () {
+function passOn() {
+    if (document.getElementById("username").value == '' || document.getElementById("password").value == '') {
+        showToast("Please fill in required fields.");
+        return;
+    }
     var tmp = {
-            username: document.getElementById("username").value,
-            password: document.getElementById("password").value
-        }
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+    }
     postJSON(tmp, baseUrl + "/login", function (res) {
-            if (res.success) {
-                window.localStorage.setItem("token", res.result.token);
-                location.href = "index.html";
-            }
-            else {
-                // show error
-                console.log("wait something wrong");
-            }
-        })
+        if (res.success) {
+            window.localStorage.setItem("token", res.result.token);
+            location.href = "index.html";
+        }
+        else {
+            showToast(res.error);
+        }
+    })
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("continueBtn").addEventListener("click", function (c) {
-        passOn(); 
-        
+        passOn();
+
     })
 
     document.addEventListener('keypress', function (e) {
-        if (document.getElementById("username").value === null) {
-            alert('no username');
-        }
         var key = e.which || e.keyCode;
         if (key == 13) {
             passOn();
         }
-
     });
 })
 
@@ -60,4 +59,13 @@ function postJSON(data, url, loaded) {
         return;
     };
     xhr.send(JSON.stringify(data));
+}
+
+function showToast(text = "") {
+    document.getElementById("tMessage").innerHTML = text;
+    document.getElementById("toast").style.display = "block";
+}
+
+function hideToast() {
+    document.getElementById("toast").style.display = "none";
 }

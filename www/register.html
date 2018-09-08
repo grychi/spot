@@ -36,7 +36,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <div id="regBtn" class="btn"> <a href= "register.html">Register</a></div>
+                        <div id="regBtn" class="btn"> <a href="register.html">Register</a></div>
                     </li>
                     <li>
                         <div id="loginBtn" class="btn"><a href="login.html">Login</a></div>
@@ -49,13 +49,21 @@
         <div id="regContainer">
             <img src="img/logo.png">
             <h4> Sign up for spot! </h4>
-                <input type="username" id="username" placeholder="Username" spellcheck="false" required><br>
-                <input type="password" id="password" placeholder="Password" spellcheck="false" required><br>
-                <input type="password" id="pass_check" placeholder="Confirm Password" spellcheck="false" required><br>
-                <div id="continueBtn" class="btn">Register</div>
+            <input type="username" id="username" placeholder="Username" spellcheck="false" required><br>
+            <input type="password" id="password" placeholder="Password" spellcheck="false" required><br>
+            <input type="password" id="pass_check" placeholder="Confirm Password" spellcheck="false" required><br>
+            <div id="continueBtn" class="btn">Register</div>
         </div>
     </div>
 
+    <div id="toast">
+        <div id="closeToast" onclick="hideToast()">
+            <i class="material-icons">
+                close
+            </i>
+        </div>
+        <div id="tMessage"></div>
+    </div>
 </body>
 
 </html>

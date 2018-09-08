@@ -26,7 +26,7 @@
     <!-- navbar -->
     <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">s
+            <div class="navbar-header">
                 <a class="navbar-brand" href="#"><img src="img/logo.png" style="height:30px;">spot</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -49,6 +49,15 @@
             <input type="password" id="password" placeholder="Password" spellcheck="false" required><br>
             <div id="continueBtn" class="btn">Login</div>
         </div>
+    </div>
+
+    <div id="toast">
+        <div id="closeToast" onclick="hideToast()">
+            <i class="material-icons">
+                close
+            </i>
+        </div>
+        <div id="tMessage"></div>
     </div>
 
 </body>
