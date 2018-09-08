@@ -1,0 +1,40 @@
+* {
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.navbar-brand {
+	font-weight: strong;
+}
+
+.navbar-default {
+	background-color: #7EBDC2;
+}
+
+#map, #side {
+	float:left;
+	margin-top: 51px;
+}
+
+#map {
+	background-color:black;
+	height:100vh;
+	width:60%;
+}
+
+#side {
+	width: 40%;
+}
+
+form.form-inline.my-2.my-lg-0 {
+    margin-top: 8px;
+}
+
+.activity {
+	width:85%;
+	padding: 15px;
+    background-color: #FDF0D5;
+}
+
+.activity img {
+	height: 100pxs;
+}
