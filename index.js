@@ -46,7 +46,7 @@ app.post('/login', function (req, res) {
             var hash = crypto.createHash('sha256');
             hash.update(req.body.password + result.salt);
             if (result.password == hash.digest('base64')) {
-                res.send(resDefault);
+                res.send(resWrap({ token: req.body.username }));
                 return;
             }
         }
@@ -115,12 +115,12 @@ app.post('/createEvent', function (req, res) {
 });
 
 app.post('/closeEvent', function (req, res) {
-    db.collection("Events").findOne({id:req.body.eventid}, function (err, result){
+    db.collection("Events").findOne({ id: req.body.eventid }, function (err, result) {
         if (err) throw err;
         else {
-            db.collection("Events").updateOne({id:req.body.eventid}, { $set: {status:"expired" } }, function(err, result){
+            db.collection("Events").updateOne({ id: req.body.eventid }, { $set: { status: "expired" } }, function (err, result) {
                 if (err) throw err;
-                res.send(resDefault); 
+                res.send(resDefault);
             });
         }
     });
@@ -141,7 +141,7 @@ app.post('/joinEvent', function (req, res) {
                 res.send(errWrap("User is already an attendee"))
             });*/
 
-            db.collection("Events").find( { attendees: username }, function (err, result){
+            db.collection("Events").find({ attendees: username }, function (err, result) {
                 if (err) throw err;
                 res.send(errWrap("User is already an attendee"));
             });
@@ -153,25 +153,25 @@ app.post('/joinEvent', function (req, res) {
             db.collection("Events").updateOne({ id: eventid }, { $set: { attendees: attendees } }, function (err, result) {
                 if (err) throw err;
             });
-            db.collection("Profiles").findOne({username:req.body.username}, function(err, result){
+            db.collection("Profiles").findOne({ username: req.body.username }, function (err, result) {
                 if (err) throw err;
                 var attended = result.attended;
                 attended.push(req.body.eventid);
-                db.collection("Profiles").updateOne({username: req.body.username}, { $set: {attended: attended}}, function (err, result) {
+                db.collection("Profiles").updateOne({ username: req.body.username }, { $set: { attended: attended } }, function (err, result) {
                     if (err) throw err;
                     res.send(resDefault);
-                });  
+                });
             });
             // update attended
-             
-             
+
+
         }
     });
 });
 
 app.get('/getEvents', function (req, res) {
     //return all events 
-    db.collection("Events").find( {}).toArray(function (err, result){
+    db.collection("Events").find({}).toArray(function (err, result) {
         if (err) throw err;
         // console.log(result);
         res.send(resWrap(result));
