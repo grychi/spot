@@ -152,7 +152,7 @@ form.form-inline.my-2.my-lg-0 {
 	color: white;
 }
 
-#createBtn {
+#createBtn, #userBtn {
 	background: white;
 	border: solid 3px #00bcd4;
 	height: 2em;
@@ -168,6 +168,10 @@ form.form-inline.my-2.my-lg-0 {
 #createBtn:hover {
 	background: #00bcd4;
 	color: white;
+}
+
+#userBtn {
+	width:auto;
 }
 
 .location, .creator {
@@ -265,6 +269,7 @@ input[type=file] {
 #regContainer img, #loginContainer img {
 	height:100px;
 }
+<<<<<<< HEAD
 .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -293,6 +298,21 @@ input[type=file] {
     border-radius: 50%;
     background: #00BCD4;
     cursor: pointer;
+=======
+
+.event {
+	min-height: 100px;
+}
+
+.event img {
+	width: 100px;
+	height: 100px;
+}
+
+.event > .content {
+    margin-left: 26px;
+    display: inline-block;
+>>>>>>> b2b321ff5e9d912c77b467f3358015e274b2fe01
 }
 
 @keyframes loading {
