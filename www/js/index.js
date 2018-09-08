@@ -3,11 +3,9 @@ var map;
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
     
-    /*
      if (!window.localStorage.getItem("token")) {
         window.location.href = "login.html"
     };
-    */
 
     var slider = document.getElementById("durationSlider");
     var output = document.getElementById("output");
