@@ -1,0 +1,63 @@
+body {
+    background-color: #ECEFF1;
+}
+#content {
+    margin-top: 54px;
+}
+input {
+    padding: 0.5em;
+}
+.btn, input {
+    background-color: white;
+    border: solid 2px #00BCD4;
+    border-radius: 2em;
+    margin: 0.4em;
+    width: calc(100% - 1em);
+    outline: none;
+}
+.btn {
+    font-weight: bold;
+    color: #00BCD4;
+
+}
+.btn:hover {
+    background-color: #00BCD4;
+    color: white;
+}
+
+#loginContainer {
+    background-color: white;
+    max-width: 24em;
+    padding: 2em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin: 6em auto;
+    position: relative;
+    border-bottom: solid 3px #00bcd4;
+}
+#loginContainer h4 {
+    margin: 0.5em;
+}
+#logo {
+    height: 1em;
+    width: 1em;
+    margin: 0 auto 0.2em auto;
+    background: #00bcd4;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 6em;
+    line-height: 0.6;
+    border: solid 6px white;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+/*
+#back {
+	height: 5px;
+	width: 100%;
+	background-color: #00bcd4;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+*/
