@@ -9,7 +9,35 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
             else {
                 // show error
+                console.log("wait something wrong");
             }
         })
     })
 })
+
+function getJSON(url, loaded) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && (this.status == 200 || this.status == 201)) {
+            result = JSON.parse(xhr.responseText);
+            loaded(result);
+        }
+        return;
+    };
+    xhr.send();
+}
+
+function postJSON(data, url, loaded) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && (this.status == 200 || this.status == 201)) {
+            result = JSON.parse(xhr.responseText);
+            loaded(result);
+        }
+        return;
+    };
+    xhr.send(JSON.stringify(data));
+}
