@@ -46,10 +46,13 @@ form.form-inline.my-2.my-lg-0 {
 }
 
 .activity {
-	width: 100%;
+	width: calc(100% - 2em);
 	padding: 1em;
 	background-color: #FAFAFA;
 	position: relative;
+	margin: 1em;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	border-radius: 0.5em;
 }
 
 #searchIn {
@@ -94,7 +97,7 @@ form.form-inline.my-2.my-lg-0 {
 	margin-top: 0.8em;
 	margin-bottom: 0.8em;
 	border: none;
-	border-bottom: solid 1px #607D8B;
+	border-bottom: solid 1px #CFD8DC;
 	width: 100%;
 }
 .attendees {
@@ -118,10 +121,10 @@ form.form-inline.my-2.my-lg-0 {
 }
 .tag {
 	display: inline-block;
-	padding: 0.3em;
+	padding: 0.3em 0.5em;
 	line-height: 1;
 	border: solid 2px #00bcd4;
-	border-radius: 0.5em;
+	border-radius: 0.9em;
 	margin: 0.5em 0.2em;
 }
 
