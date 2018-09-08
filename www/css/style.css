@@ -276,7 +276,7 @@ input[type=file] {
 #regContainer img, #loginContainer img {
 	height:100px;
 }
-<<<<<<< HEAD
+
 .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -305,7 +305,7 @@ input[type=file] {
     border-radius: 50%;
     background: #00BCD4;
     cursor: pointer;
-=======
+}
 
 .event {
 	min-height: 100px;
@@ -324,11 +324,7 @@ input[type=file] {
     float: left;
     margin-left: 26px;
     display: inline-block;
-<<<<<<< HEAD
->>>>>>> b2b321ff5e9d912c77b467f3358015e274b2fe01
-=======
     margin-top: -15px;
->>>>>>> 0ba17ebaf1312012e95fd98713e0e7a0538ba4d4
 }
 
 @keyframes loading {
