@@ -128,32 +128,55 @@ app.post('/closeEvent', function (req, res) {
 
 app.post('/joinEvent', function (req, res) {
     var eventid = req.body.eventid;
+    var username = req.body.username;
 
     db.collection("Events").findOne({ id: eventid }, function (err, result) {
         if (err) throw err;
         else {
+            // check if user already an attendee
+
+            /*
+            db.events.find({attendees: {$elemMatch: username}}, function(err, result) {
+                if (err) throw err;
+                res.send(errWrap("User is already an attendee"))
+            });*/
+
+            db.collection("Events").find( { attendees: username }, function (err, result){
+                if (err) throw err;
+                res.send(errWrap("User is already an attendee"));
+            });
+
+
             // update attendees in events
             var attendees = result.attendees;
             attendees.push(req.body.username);
-            db.collection("Events").updateOne({ id: eventid }, { attendees: attendees }, function (err, result) {
+            db.collection("Events").updateOne({ id: eventid }, { $set: { attendees: attendees } }, function (err, result) {
                 if (err) throw err;
-                res.send(resDefault);
+            });
+            db.collection("Profiles").findOne({username:req.body.username}, function(err, result){
+                if (err) throw err;
+                var attended = result.attended;
+                attended.push(req.body.eventid);
+                db.collection("Profiles").updateOne({username: req.body.username}, { $set: {attended: attended}}, function (err, result) {
+                    if (err) throw err;
+                    res.send(resDefault);
+                });  
             });
             // update attended
-            var attended = result.attended;
-            attended.push(req.body.eventid); 
-            db.collection("Profiles").updateOne({username: req.body.username}, {attended: attended}, function (err, result) {
-                if (err) throw err;
-                res.send(resDefault);
-
-            });
-            
+             
+             
         }
-    })
+    });
 });
 
 
-app.post('/search', function (req, res) {
+app.get('/getEvents', function (req, res) {
+    //return all events 
+    db.collection("Events").find( {}).toArray(function (err, result){
+        if (err) throw err;
+        console.log(result);
+        res.send(resWrap(result));
+    });
 
 });
 
