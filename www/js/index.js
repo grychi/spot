@@ -3,20 +3,28 @@ var baseUrl = "http://10.251.80.142:8012"
 
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
-    
-     if (!window.localStorage.getItem("token")) {
+
+    if (!window.localStorage.getItem("token")) {
         window.location.href = "login.html"
     };
 
     var slider = document.getElementById("durationSlider");
     var output = document.getElementById("output");
-    output.innerHTML = slider.value + " minutes"; 
+    output.innerHTML = slider.value + " minutes";
 
-    slider.oninput = function() {
+    slider.oninput = function () {
         output.innerHTML = this.value + " minutes";
     }
-}); 
 
+    getJSON(baseUrl + "/getEvents", function (e) {
+        if (e.success) {
+            console.log(e);
+            for (var i of e.result) {
+                renderMarkers(i);
+            }
+        }
+    })
+});
 
 function showLoading() {
     document.getElementById("loading-contain").style.display = "block";
@@ -41,6 +49,11 @@ function initMap() {
         }, function (e) {
             hideLoading();
             document.getElementById("needLocation").style.display = "block";
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: new google.maps.LatLng(lat, lon),
+                mapTypeId: 'roadmap'
+            });
         })
     }
     else {
@@ -49,7 +62,7 @@ function initMap() {
             center: new google.maps.LatLng(lat, lon),
             mapTypeId: 'roadmap'
         });
-        document.getElementById("loading-contain").style.display = "none";
+        hideLoading();
     }
 }
 
