@@ -195,6 +195,7 @@ function showResults(e) {
             </div>
             <hr>
             <div class="tags">` + tagsHTML + `</div>
+            <a href="/join" class="joinBtn">join →</a>
         </div>
     </div>`;
         tmp.innerHTML = baseHTML;
