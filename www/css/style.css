@@ -205,6 +205,13 @@ button {
     font-weight: bold;
 }
 
+.modal-body {
+    position: relative;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
 input[type=file] {
     display: inline-block;
     height: 34px;
@@ -272,16 +279,22 @@ input[type=file] {
 
 .event {
 	min-height: 100px;
+	margin-bottom:5px;
+	clear:both;
 }
 
 .event img {
-	width: 100px;
-	height: 100px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    float: left;
 }
 
 .event > .content {
+    float: left;
     margin-left: 26px;
     display: inline-block;
+    margin-top: -15px;
 }
 
 @keyframes loading {
