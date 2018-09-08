@@ -2,6 +2,9 @@ var map;
 
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
+    if (!window.localStorage.getItem("token")) {
+        window.location.href = "login.html"
+    };
 })
 function initMap() {
     var lat = 40.6942036,
@@ -34,4 +37,31 @@ function renderMarkers(e) {
             map: map
         });
     }
+}
+
+function getJSON(url, loaded) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && (this.status == 200 || this.status == 201)) {
+            result = JSON.parse(xhr.responseText);
+            loaded(result);
+        }
+        return;
+    };
+    xhr.send();
+}
+
+function postJSON(data, url, loaded) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && (this.status == 200 || this.status == 201)) {
+            result = JSON.parse(xhr.responseText);
+            loaded(result);
+        }
+        return;
+    };
+    xhr.send(JSON.stringify(data));
 }
