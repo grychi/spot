@@ -25,7 +25,7 @@
 #side {
 	background-color: #ECEFF1;
 	height:100vh;
-	width:60%;
+	width: 100%;
 }
 
 #mapContainer {
@@ -38,6 +38,7 @@
 #map {
 	height: 100%;
 	width: 100%;
+	display: none;
 }
 
 form.form-inline.my-2.my-lg-0 {
@@ -46,12 +47,9 @@ form.form-inline.my-2.my-lg-0 {
 
 .activity {
 	width: 100%;
-	padding: 15px;
+	padding: 1em;
 	background-color: #FAFAFA;
-}
-
-.activity img {
-	height: 100pxs;
+	position: relative;
 }
 
 #searchIn {
@@ -62,4 +60,76 @@ form.form-inline.my-2.my-lg-0 {
 	line-height: 1;
 	padding: 3px;
 	background-color: white;
+}
+
+.icon img {
+	object-fit: cover;
+	height: 3em;
+	width: 3em;
+	border-radius: 50%;
+}
+
+.activity .header {
+	min-height: 3em;
+}
+
+.header .icon {
+	float: left;
+}
+
+.header .title {
+	float: left;
+    padding: 0 0.5em;
+    line-height: 0;
+}
+
+.header .timestamp {
+	float: left;
+	width: calc(100% - 4em);
+    padding: 0.2em 0.6em;
+    line-height: 1.5;
+}
+
+.activity hr {
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
+	border: none;
+	border-bottom: solid 1px #607D8B;
+	width: 100%;
+}
+.attendees {
+    position: absolute;
+    top: 1em;
+    right: 1.5em;
+}
+.attendee {
+	height: 2.5em;
+	width: 2.5em;
+	float: left;
+	margin: 0 -0.5em;
+	background: #00bcd4;
+	border: solid 3px #eceff1;
+	border-radius: 50%;
+}
+
+.tags {
+	width: 100%;
+	margin-left: -0.3em;
+}
+.tag {
+	display: inline-block;
+	padding: 0.3em;
+	line-height: 1;
+	border: solid 2px #00bcd4;
+	border-radius: 0.5em;
+	margin: 0.5em 0.2em;
+}
+
+@media (min-width: 640px) {
+	#side {
+		width: 60%;
+	}
+	#map {
+		display: block;
+	}
 }
