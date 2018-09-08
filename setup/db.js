@@ -45,13 +45,16 @@ db.createCollection("Events", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["id", "creator", "status", "name", "description", "tags", "location"],
+            required: ["id", "creator", "timestamp", "status", "name", "description", "tags", "location"],
             properties: {
                 id: {
                     bsonType: "string",
                 },
                 creator: {
                     bsonType: "string",
+                },
+                timestamp: {
+                    bsonType: "timestamp"
                 },
                 status: {
                     enum: ['active', 'expired']
@@ -76,6 +79,9 @@ db.createCollection("Events", {
                 },
                 duration: {
                     bsonType: "int"
+                },
+                image: {
+                    bsonType: "string"
                 }
             }
         }

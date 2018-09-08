@@ -42,6 +42,7 @@ function initMap() {
             getJSON(baseUrl + "/getEvents", function (e) {
                 if (e.success) {
                     renderMarkers(e.result);
+                    showResults(e.result);
                 }
             })
         }, function (e) {
@@ -55,6 +56,7 @@ function initMap() {
             getJSON(baseUrl + "/getEvents", function (e) {
                 if (e.success) {
                     renderMarkers(e.result);
+                    showResults(e.result);
                 }
             })
         })
@@ -69,6 +71,7 @@ function initMap() {
         getJSON(baseUrl + "/getEvents", function (e) {
             if (e.success) {
                 renderMarkers(e.result);
+                showResults(e.result);
             }
         })
     }
@@ -76,7 +79,6 @@ function initMap() {
 
 function renderMarkers(e) {
     for (var i of e) {
-        console.log(i);
         var latLng = new google.maps.LatLng(i.location.lat, i.location.lon);
         var marker = new google.maps.Marker({
             position: latLng,
@@ -85,6 +87,57 @@ function renderMarkers(e) {
         marker.setMap(map);
     }
 }
+
+function showResults(e) {
+    hideLoading();
+    var toPut = document.getElementById("results");
+    toPut.innerHTML = '';
+    for (var i of e) {
+        var tmp = document.createElement('div');
+        var tagsHTML = '';
+        for (var t of i.tags) {
+            tagsHTML += '<div class="tag">' + t + '</div>';
+        }
+        var baseHTML = `
+    <div class="activity">
+        <div class="header">
+            <div class="icon"><img src="data:image/png;base64, ` + i.image + `"></div>
+            <h4 class="title">` + i.name + `</h4>
+            <div class="timestamp">` + i.timestamp + `</div>
+            <div class="attendees">
+                <div class="attendee"></div>
+                <div class="attendee"></div>
+                <div class="attendee"></div>
+            </div>
+        </div>
+        <hr>
+        <div class="body">
+            <div class="description">` + i.description + `
+                <div class="additionalInfo">
+                    <div class="location">
+                        <i class="material-icons">
+                            pin_drop
+                        </i>
+                        <div class="distance"> ` + JSON.stringify(i.location) + `
+                        </div>
+                    </div>
+                    <div class="creator">
+                        <i class="material-icons">
+                            account_circle
+                        </i>
+                        <div class="username">` + i.creator + `</div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="tags">` + tagsHTML + `</div>
+        </div>
+    </div>`;
+        tmp.innerHTML = baseHTML;
+        toPut.appendChild(tmp);
+    }
+}
+
 
 function getJSON(url, loaded) {
     var xhr = new XMLHttpRequest();

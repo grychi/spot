@@ -41,8 +41,8 @@ function errWrap(str) {
     return res;
 }
 
-function combineArray (eventSearch, tagResult) {
-    if (!eventSearch ) return tagResult;
+function combineArray(eventSearch, tagResult) {
+    if (!eventSearch) return tagResult;
     if (!tagResult) return eventSearch;
     return eventSearch.concat(tagResult);
 }
@@ -114,8 +114,10 @@ app.post('/createEvent', function (req, res) {
     var tmp = {
         id: generateUUID(),
         creator: req.body.username,
+        timestamp: new Date(),
         status: 'active',
         name: req.body.eventname,
+        image: req.body.image,
         description: req.body.description,
         tags: req.body.tags,
         location: req.body.location,
@@ -198,11 +200,11 @@ app.get('/getUsers', function (req, res) {
     });
 });
 
-app.post ('/search', function (req, res){
+app.post('/search', function (req, res) {
     // search on events with names
     var nameSearch;
     var tagSearch;
-    db.collection("Events").find( { "name" : {$in: req.body.terms} }).toArray( function (err, result){
+    db.collection("Events").find({ "name": { $in: req.body.terms } }).toArray(function (err, result) {
         if (err) throw err;
         // res.send(resWrap(result));
         nameSearch = result;
@@ -211,7 +213,7 @@ app.post ('/search', function (req, res){
 
 
     // search on tags
-    db.collection("Events").find({ "tags" : {$in: req.body.terms } }).toArray(function (err, tagResult){
+    db.collection("Events").find({ "tags": { $in: req.body.terms } }).toArray(function (err, tagResult) {
         if (err) throw err;
         tagSearch = tagResult;
         // console.log(tagSearch);
@@ -220,8 +222,8 @@ app.post ('/search', function (req, res){
     console.log(tagSearch);
     console.log(nameSearch);
     var combinedRes = combineArray(nameSearch, tagSearch)
-    console.log ('combined'+ combinedRes);
-    res.send(resWrap(combinedRes)); 
+    console.log('combined' + combinedRes);
+    res.send(resWrap(combinedRes));
 });
 app.listen(port, function () {
     // console.log('index.js');
