@@ -1,4 +1,5 @@
 var map;
+var baseUrl = "http://10.251.80.142:8012"
 
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
