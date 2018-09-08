@@ -40,6 +40,12 @@ function errWrap(str) {
     res.error = str;
     return res;
 }
+
+function combineArray (eventSearch, tagResult) {
+    if (!eventSearch ) return tagResult;
+    if (!tagResult) return eventSearch;
+    return eventSearch.concat(tagResult);
+}
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/www/index.html");
 });
@@ -146,12 +152,6 @@ app.post('/joinEvent', function (req, res) {
         else {
             // check if user already an attendee
 
-            /*
-            db.events.find({attendees: {$elemMatch: username}}, function(err, result) {
-                if (err) throw err;
-                res.send(errWrap("User is already an attendee"))
-            });*/
-
             db.collection("Events").find({ attendees: username }, function (err, result) {
                 if (err) throw err;
                 res.send(errWrap("User is already an attendee"));
@@ -181,7 +181,7 @@ app.post('/joinEvent', function (req, res) {
 });
 
 app.get('/getEvents', function (req, res) {
-    //return all events 
+    //return all events based on search name 
     db.collection("Events").find({}).toArray(function (err, result) {
         if (err) throw err;
         // console.log(result);
@@ -198,6 +198,31 @@ app.get('/getUsers', function (req, res) {
     });
 });
 
+app.post ('/search', function (req, res){
+    // search on events with names
+    var nameSearch;
+    var tagSearch;
+    db.collection("Events").find( { "name" : {$in: req.body.terms} }).toArray( function (err, result){
+        if (err) throw err;
+        // res.send(resWrap(result));
+        nameSearch = result;
+        // console.log(nameSearch); 
+    });
+
+
+    // search on tags
+    db.collection("Events").find({ "tags" : {$in: req.body.terms } }).toArray(function (err, tagResult){
+        if (err) throw err;
+        tagSearch = tagResult;
+        // console.log(tagSearch);
+        // res.send(resWrap(tagResult));
+    });
+    console.log(tagSearch);
+    console.log(nameSearch);
+    var combinedRes = combineArray(nameSearch, tagSearch)
+    console.log ('combined'+ combinedRes);
+    res.send(resWrap(combinedRes)); 
+});
 app.listen(port, function () {
     // console.log('index.js');
 });

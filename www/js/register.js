@@ -1,6 +1,22 @@
 
 var baseUrl = "http://localhost:8012"
 
+function toLogin(){
+    var tmp = {
+                username: document.getElementById("username").value,
+                password: document.getElementById("password").value
+            }
+        postJSON(tmp, baseUrl + "/register", function (res) {
+            if (res.success) {
+                location.href = "login.html";
+            }
+            else {
+                // show error
+                console.log("wait something wrong xD");
+            }
+        });
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("continueBtn").addEventListener("click", function (c) {
 
@@ -14,20 +30,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
         else {
             console.log("Passwords Match!!!");
-            var tmp = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
-            }
-            postJSON(tmp, baseUrl + "/register", function (res) {
-                if (res.success) {
-                    location.href = "login.html";
-                }
-                else {
-                    // show error
-                    console.log("wait something wrong");
-                }
-            });
+            
         }
+    });
+    document.addEventListener('keypress', function (e) {
+        var key = e.which || e.keyCode;
+        if (key == 13) {
+            toLogin();
+        }
+
     });
 });
 

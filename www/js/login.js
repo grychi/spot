@@ -1,12 +1,11 @@
 var baseUrl = "http://localhost:8012"
 
-document.addEventListener("DOMContentLoaded", function (e) {
-    document.getElementById("continueBtn").addEventListener("click", function (c) {
-        var tmp = {
+function passOn () {
+    var tmp = {
             username: document.getElementById("username").value,
             password: document.getElementById("password").value
         }
-        postJSON(tmp, baseUrl + "/login", function (res) {
+    postJSON(tmp, baseUrl + "/login", function (res) {
             if (res.success) {
                 window.localStorage.setItem("token", res.result.token);
                 location.href = "index.html";
@@ -16,7 +15,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 console.log("wait something wrong");
             }
         })
+}
+
+document.addEventListener("DOMContentLoaded", function (e) {
+    document.getElementById("continueBtn").addEventListener("click", function (c) {
+        passOn(); 
+        
     })
+
+    document.addEventListener('keypress', function (e) {
+        if (document.getElementById("username").value === null) {
+            alert('no username');
+        }
+        var key = e.which || e.keyCode;
+        if (key == 13) {
+            passOn();
+        }
+
+    });
 })
 
 function getJSON(url, loaded) {
