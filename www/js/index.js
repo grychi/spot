@@ -4,12 +4,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
 })
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
-        // center in location of device
-        center: new google.maps.LatLng(0, 0),
-        mapTypeId: 'terrain'
-    });
+    var lat = 40.6942036,
+        lon = -73.9887677;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (e) {
+            lat = e.coords.latitude;
+            lon = e.coords.longitude;
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: new google.maps.LatLng(lat, lon),
+                mapTypeId: 'roadmap'
+            });
+        })
+    }
+    else {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: new google.maps.LatLng(lat, lon),
+            mapTypeId: 'roadmap'
+        });
+    }
 }
 
 function renderMarkers(e) {

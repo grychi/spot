@@ -3,11 +3,18 @@
 }
 
 .navbar-brand {
-	font-weight: strong;
+	font-weight: bold;
 }
 
-.navbar-default {
-	background-color: #7EBDC2;
+.container, #navbar {
+	background: #00BCD4;
+	background-color: #00BCD4;
+}
+.navbar-default .navbar-brand {
+	color: white;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: white;
 }
 
 #map, #side {
@@ -16,13 +23,21 @@
 }
 
 #side {
-	background-color:black;
+	background-color: #ECEFF1;
 	height:100vh;
 	width:60%;
 }
 
-#map {
+#mapContainer {
 	width: 40%;
+	height: calc(100vh - 51px);
+	top: 0;
+	right: 0;
+	position: fixed;
+}
+#map {
+	height: 100%;
+	width: 100%;
 }
 
 form.form-inline.my-2.my-lg-0 {
@@ -30,11 +45,21 @@ form.form-inline.my-2.my-lg-0 {
 }
 
 .activity {
-	width:85%;
+	width: 100%;
 	padding: 15px;
-    background-color: #FDF0D5;
+	background-color: #FAFAFA;
 }
 
 .activity img {
 	height: 100pxs;
+}
+
+#searchIn {
+	border: none;
+}
+
+#searchBtn {
+	line-height: 1;
+	padding: 3px;
+	background-color: white;
 }

@@ -15,16 +15,18 @@
 
 	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	 crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/index.js"></script>
 </head>
 
 <body>
 	<!-- navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav id="navbar" class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -42,8 +44,12 @@
 					<!-- <li><a href="../navbar/">Default</a></li> -->
 					<li>
 						<form class="form-inline my-2 my-lg-0">
-							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+							<input id="searchIn" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">
+								<i class="material-icons">
+									search
+								</i>
+							</button>
 						</form>
 					</li>
 				</ul>
@@ -57,14 +63,14 @@
 				<h1 class="title">penn apps hackathon</h1>
 			</div>
 		</div>
-		<p class="description">
+		<div class="description">
 			In the context of a hackathon, the word "hack" is used to describe how multiple technologies can be used together in
 			a new and innovative way. Teams of up to four people spend the weekend working on innovative software and hardware
 			solutions to real-world problems.
-		</p>
-		<p class="">
+		</div>
+		<div class="">
 			UPenn
-		</p>
+		</div>
 		<p class="attendees">
 			first person, second person, third person...and # more
 		</p>
@@ -75,7 +81,9 @@
 		</a>
 	</div>
 
-	<div id="map"></div>
+	<div id="mapContainer">
+		<div id="map"></div>
+	</div>
 
 	</div>
 
