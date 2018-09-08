@@ -40,9 +40,14 @@ function errWrap(str) {
     res.error = str;
     return res;
 }
-
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + "/www/index.html");
+});
 app.get('/login', function (req, res) {
     res.sendFile(__dirname + "/www/login.html");
+});
+app.get('/register', function (req, res) {
+    res.sendFile(__dirname + "/www/register.html");
 });
 
 app.post('/login', function (req, res) {
