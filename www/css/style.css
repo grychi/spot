@@ -211,6 +211,19 @@ input[type=file] {
 	width: 100%;
 }
 
+#needIco {
+	font-size: 1em;
+	text-align: center;
+	color: #f44336;
+}
+#needIco i {
+	font-size: 4em;
+}
+#needLocation {
+	line-height: 1.8;
+	display: none;
+}
+
 @media (min-width: 640px) {
 	#side {
 		width: 60%;
@@ -218,4 +231,40 @@ input[type=file] {
 	#map {
 		display: block;
 	}
+}
+
+#loading-contain {
+	margin: 2em auto;
+	text-align: center;
+}
+#load {
+    width: 4em;
+    animation: loading 3s linear infinite;
+}
+#load #loading-inner {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 300;
+    stroke-width: 10;
+    stroke-miterlimit: 10;
+    stroke-linecap: round;
+    animation: loading-circle 2s linear infinite;
+    stroke: #00bcd4;
+    fill: transparent;
+}
+  
+@keyframes loading {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+@keyframes loading-circle {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -600;
+    }
 }

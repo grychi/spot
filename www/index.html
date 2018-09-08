@@ -63,145 +63,55 @@
 
 	<!-- create event form -->
 	<div id="createEvent" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	    	<form action="/create-event">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Create an Event</h4>
-		      </div>
-		      <div class="modal-body">
-				<div class="form-group">
-				    <label for="event-photo">Upload a photo for your event:</label>
-				    <input type="file" class="form-control-file" id="event-photo" aria-describedby="fileHelp">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Create an Event</h4>
 				</div>
-		      	<div class="form-group" style="margin-top:5px">
-				    <label for="event-description">Describe your event:</label>
-				    <textarea class="form-control" id="event-description" rows="3"></textarea>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="event-name">Enter a name for your event:</label>
+						<input type="text" class="form-control" id="event-name">
+					</div>
+					<div class="form-group">
+						<label for="event-photo">Upload a photo for your event:</label>
+						<input type="file" class="form-control-file" id="event-photo" aria-describedby="fileHelp">
+					</div>
+					<div class="form-group" style="margin-top:5px">
+						<label for="event-description">Describe your event:</label>
+						<textarea class="form-control" id="event-description" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="event-tags">Create tags for your event:</label>
+						<input type="text" class="form-control" id="event-tags" data-role="tagsinput">
+					</div>
 				</div>
-				<div class="form-group">
-				    <label for="event-tags">Create tags for your event:</label>
-      				<input type="text" class="form-control" id="event-tags" data-role="tagsinput">
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-default" value="Submit">
 				</div>
-		      </div>
-		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-default" value="Submit">
-		      </div>
-		    </form>
-	    </div>
+			</div>
 
-	  </div>
+		</div>
 	</div>
 
 	<div id="side">
-		<div class="activity">
-			<div class="header">
-				<div class="icon"><img src="http://houseofbots.com/images/news/1373/cover.png"></div>
-				<h4 class="title">penn apps hackathon</h4>
-				<div class="timestamp">5 min remaining</div>
-				<div class="attendees">
-					<div class="attendee"></div>
-					<div class="attendee"></div>
-					<div class="attendee"></div>
-				</div>
-			</div>
-			<hr>
-			<div class="body">
-				<div class="description">
-					In the context of a hackathon, the word "hack" is used to describe how multiple technologies can be used together
-					in a new and innovative way. Teams of up to four people spend the weekend working on innovative software and
-					hardware solutions to real-world problems.
-					<div class="additionalInfo">
-						<div class="location">
-							<i class="material-icons">
-								pin_drop
-							</i>
-							<div class="distance">
-								5 miles away
-							</div>
-						</div>
-						<div class="creator">
-							<i class="material-icons">
-								account_circle
-							</i>
-							<div class="username">
-								Kevin foos
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="tags">
-					<div class="tag">UPenn</div>
-					<div class="tag">hacker</div>
-					<div class="tag">michell</div>
-					<div class="tag">pls</div>
-					<div class="tag">help</div>
-					<div class="tag">fix</div>
-				</div>
-			</div>
+
+		<div id="loading-contain">
+			<svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+				<circle id="loading-inner" cx="75" cy="75" r="60" />
+			</svg>
 		</div>
 
-
-		<div class="activity">
-			<div class="header">
-				<div class="icon"><img src="http://houseofbots.com/images/news/1373/cover.png"></div>
-				<h4 class="title">penn apps hackathon</h4>
-				<div class="timestamp">5 min remaining</div>
-				<div class="attendees">
-					<div class="attendee"></div>
-					<div class="attendee"></div>
-					<div class="attendee"></div>
-				</div>
+		<div id="needLocation" class="activity">
+			<div id="needIco">
+				<i class="material-icons">
+					error_outline
+				</i>
 			</div>
-			<hr>
-			<div class="body">
-				<div class="description">
-					In the context of a hackathon, the word "hack" is used to describe how multiple technologies can be used together
-					in a new and innovative way. Teams of up to four people spend the weekend working on innovative software and
-					hardware solutions to real-world problems.
-				</div>
-				<hr>
-				<div class="tags">
-					<div class="tag">UPenn</div>
-					<div class="tag">hacker</div>
-					<div class="tag">michell</div>
-					<div class="tag">pls</div>
-					<div class="tag">help</div>
-					<div class="tag">fix</div>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="activity">
-			<div class="header">
-				<div class="icon"><img src="http://houseofbots.com/images/news/1373/cover.png"></div>
-				<h4 class="title">penn apps hackathon</h4>
-				<div class="timestamp">5 min remaining</div>
-				<div class="attendees">
-					<div class="attendee"></div>
-					<div class="attendee"></div>
-					<div class="attendee"></div>
-				</div>
-			</div>
-			<hr>
-			<div class="body">
-				<div class="description">
-					In the context of a hackathon, the word "hack" is used to describe how multiple technologies can be used together
-					in a new and innovative way. Teams of up to four people spend the weekend working on innovative software and
-					hardware solutions to real-world problems.
-				</div>
-				<hr>
-				<div class="tags">
-					<div class="tag">UPenn</div>
-					<div class="tag">hacker</div>
-					<div class="tag">michell</div>
-					<div class="tag">pls</div>
-					<div class="tag">help</div>
-					<div class="tag">fix</div>
-				</div>
-			</div>
+			Hey there! Spontaneously planning of things (<b>spot</b>) is an app that needs your location to work properly.
+			Please enable location services so you can find other people to do things with or create an event for other people
+			to join you.
 		</div>
 	</div>
 
@@ -211,12 +121,12 @@
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAiaGvlKOdOpB-KHpiOmIg3DQZBY_oGp0&callback=initMap"></script>
 	<script>
-		$('#createEvent').on('keyup keypress', function(e) {
-		  var keyCode = e.keyCode || e.which;
-		  if (keyCode === 13) { 
-		    e.preventDefault();
-		    return false;
-		  }
+		$('#createEvent').on('keyup keypress', function (e) {
+			var keyCode = e.keyCode || e.which;
+			if (keyCode === 13) {
+				e.preventDefault();
+				return false;
+			}
 		});
 	</script>
 </body>

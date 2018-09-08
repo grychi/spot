@@ -3,9 +3,18 @@ var map;
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
     if (!window.localStorage.getItem("token")) {
-        // window.location.href = "login.html"
+        window.location.href = "login.html"
     };
 })
+
+function showLoading() {
+    document.getElementById("loading-contain").style.display = "block";
+}
+
+function hideLoading() {
+    document.getElementById("loading-contain").style.display = "none";
+}
+
 function initMap() {
     var lat = 40.6942036,
         lon = -73.9887677;
@@ -18,6 +27,9 @@ function initMap() {
                 center: new google.maps.LatLng(lat, lon),
                 mapTypeId: 'roadmap'
             });
+        }, function (e) {
+            hideLoading();
+            document.getElementById("needLocation").style.display = "block";
         })
     }
     else {
@@ -26,6 +38,7 @@ function initMap() {
             center: new google.maps.LatLng(lat, lon),
             mapTypeId: 'roadmap'
         });
+        document.getElementById("loading-contain").style.display = "none";
     }
 }
 
