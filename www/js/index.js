@@ -15,15 +15,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     slider.oninput = function () {
         output.innerHTML = this.value + " minutes";
     }
-
-    getJSON(baseUrl + "/getEvents", function (e) {
-        if (e.success) {
-            console.log(e);
-            for (var i of e.result) {
-                renderMarkers(i);
-            }
-        }
-    })
 });
 
 function showLoading() {
@@ -35,6 +26,8 @@ function hideLoading() {
 }
 
 function initMap() {
+    var myLatLng = { lat: 39.9522188, lng: -75.1932137 };
+
     var lat = 40.6942036,
         lon = -73.9887677;
     if (navigator.geolocation) {
@@ -46,6 +39,11 @@ function initMap() {
                 center: new google.maps.LatLng(lat, lon),
                 mapTypeId: 'roadmap'
             });
+            getJSON(baseUrl + "/getEvents", function (e) {
+                if (e.success) {
+                    renderMarkers(e.result);
+                }
+            })
         }, function (e) {
             hideLoading();
             document.getElementById("needLocation").style.display = "block";
@@ -54,6 +52,11 @@ function initMap() {
                 center: new google.maps.LatLng(lat, lon),
                 mapTypeId: 'roadmap'
             });
+            getJSON(baseUrl + "/getEvents", function (e) {
+                if (e.success) {
+                    renderMarkers(e.result);
+                }
+            })
         })
     }
     else {
@@ -63,16 +66,23 @@ function initMap() {
             mapTypeId: 'roadmap'
         });
         hideLoading();
+        getJSON(baseUrl + "/getEvents", function (e) {
+            if (e.success) {
+                renderMarkers(e.result);
+            }
+        })
     }
 }
 
 function renderMarkers(e) {
     for (var i of e) {
-        var latLng = new google.maps.LatLng(e.location.lat, e.location.lon);
+        console.log(i);
+        var latLng = new google.maps.LatLng(i.location.lat, i.location.lon);
         var marker = new google.maps.Marker({
             position: latLng,
             map: map
         });
+        marker.setMap(map);
     }
 }
 
