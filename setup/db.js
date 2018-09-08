@@ -45,8 +45,11 @@ db.createCollection("Events", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["creator", "status", "name", "description", "tags", "location"],
+            required: ["id", "creator", "status", "name", "description", "tags", "location"],
             properties: {
+                id: {
+                    bsonType: "string",
+                },
                 creator: {
                     bsonType: "string",
                 },
