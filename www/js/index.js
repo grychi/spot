@@ -2,7 +2,7 @@ var map;
 var baseUrl = "http://10.251.80.142:8012"
 var lat, lon;
 var address = "";
-var fileBytes = []; 
+var fileBytes = [];
 
 
 document.addEventListener('click', function (e) {
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             "eventname": document.getElementById("event-name").value,
             "description": document.getElementById("event-description").value,
             "tags": document.getElementById("event-tags").value.split(','),
-            "location": {lat: lat, lng: lon},
+            "location": { lat: lat, lng: lon },
             "address": address,
             "max": 5,
             "image": tmpImg,
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
         });
-    
+
     });
 
     document.getElementById("event-photo").addEventListener("change", fileToByteArray);
@@ -188,8 +188,10 @@ function initMap() {
 }
 
 function renderMarkers(e) {
+    console.log(e);
     for (var i of e) {
-        var latLng = new google.maps.LatLng(i.location.lat, i.location.lon);
+        console.log(i.location);
+        var latLng = new google.maps.LatLng(i.location.lat, i.location.lng);
         var marker = new google.maps.Marker({
             position: latLng,
             map: map
