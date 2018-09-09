@@ -150,6 +150,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     var observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
+
+    document.getElementById('logoutBtn').addEventListener('click', function (e) {
+        localStorage.removeItem("token");
+        location.reload();
+    })
 });
 
 function isThereResults() {

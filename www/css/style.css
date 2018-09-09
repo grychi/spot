@@ -387,3 +387,9 @@ input[type=file] {
 	right: 0;
 	cursor: pointer;
 }
+
+#logoutBtn {
+	background-color: white;
+	line-height: 2.5;
+	color: #9E9E9E;
+}
