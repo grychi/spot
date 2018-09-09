@@ -29,6 +29,51 @@ function imgByteArrToString(buffer) {
     return window.btoa(binary);
 }
 
+function renderEvents(title, img = "http://2014s.pennapps.com/build/images/logo/light2.png", location, date) {
+    var baseHTML = `
+    <div class="event">
+        <img src="` + img + `">
+        <div class="content">
+            <h3>` + title + `</h3>
+            <p class="timeframe"><i class="fas fa-calendar-alt" style="margin-right:5px;"></i>` + date + `</p>
+            <p class="address"><i class="fas fa-map-marker-alt" style="margin-right: 5px"></i>`+ location + `</p>
+        </div>
+    </div>
+    `;
+    return baseHTML;
+}
+
+function viewProf(uname) {
+    var viewProf = {
+        "username": uname
+    }
+
+    postJSON(viewProf, baseUrl + '/getProfile', function (e) {
+        if (e.success) {
+            var toRender = document.getElementById("profHistory");
+            toRender.innerHTML = '';
+            var getHistory = {
+                "ids": e.result.attended
+            }
+            postJSON(getHistory, baseUrl + '/getEvents', function (d) {
+                if (d.success) {
+                    for (var i of d.result) {
+                        var base64Img = 'data:image/png;base64, ';
+                        if (!i.image) {
+                            base64Img = null;
+                        }
+                        else {
+                            base64Img += i.image;
+                        }
+                        theHTML += renderEvents(i.name, base64Img, moment(i.timestamp).fromNow(), i.address);
+                    }
+                    toRender.innerHTML = theHTML;
+                }
+            })
+        }
+    })
+}
+
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
     if (!window.localStorage.getItem("token")) {
@@ -42,6 +87,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     slider.oninput = function () {
         output.innerHTML = this.value + " minutes";
     }
+
+    viewProf(localStorage.getItem("token"));
 
     document.getElementById("createEventBtn").addEventListener("click", function (e) {
         var tmpImg = imgByteArrToString(fileBytes[0]);
