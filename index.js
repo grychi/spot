@@ -19,8 +19,68 @@ app.disable('x-powered-by');
 mongoClient.connect(mongodb, function (err, client) {
     if (err) throw err;
     db = client.db("spot");
+    testing();
 });
 
+var CronJob = require('cron').CronJob;
+var job = new CronJob('*/1 * * * *', function() {
+    var currentTime = new Date().getTime();
+    
+    db.collection("Events").find({}).toArray(function(err, res){
+        if (err) { throw(err); }
+        console.log("hello!!");
+        console.log(res);
+        for (var i of res){
+            if (i.timestamp + (i.duration*60000) > currentTime) {
+                db.collection("Events").updateOne(i, { $set: { status: "expired" } }, function (err, res){
+                    if (err) throw err; 
+                });
+            }
+        }
+    });
+});
+// job.start();
+
+function testing() {
+    db.collection("Events").find({}).toArray(function(err, res){
+        if (err) { throw(err); }
+        console.log("hello!!");
+        console.log(res);
+        for (var i of res){
+            if (i.timestamp + (i.duration*60000) > currentTime) {
+                db.collection("Events").updateOne(i, { $set: { status: "expired" } }, function (err, res){
+                    if (err) throw err; 
+                });
+            }
+        }
+    });
+
+    db.collection("Events").find({}).toArray(function (err, result) {
+        if (err) throw err;
+        console.log(result);
+
+    });
+
+}
+
+/*
+schedule.scheduleJob('/1 * * * *', function () {
+    console.log("hello!!");
+    var currentTime = new Date().getTime();
+    
+    db.collection("Events").find({"status": {$is:"active"}}).toArray(function(err, res){
+        console.log("hello!!");
+        console.log(res);
+        for (var i of res){
+            if (i.timestamp + (i.duration*60000) > currentTime) {
+                db.collection("Events").updateOne(i, { $set: { status: "expired" } }, function (err, res){
+                    if (err) throw err; 
+                });
+            }
+        }
+    }); 
+});
+*/ 
 var resDefault = {
     "success": true
 }
