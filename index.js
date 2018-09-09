@@ -127,7 +127,7 @@ app.post('/register', function (req, res) {
         else {
             db.collection("Users").insertOne(tmp, function (err, result) {
                 if (err) throw err;
-                db.collection("Profiles").insertOne({ username: req.body.username }, function (err, result) {
+                db.collection("Profiles").insertOne({ username: req.body.username, attended:[] }, function (err, result) {
                     if (err) throw err;
                     res.send(resDefault);
                 });
@@ -212,7 +212,7 @@ app.post('/joinEvent', function (req, res) {
 
 app.get('/getEvents', function (req, res) {
     //return all events based on search name 
-    db.collection("Events").find({}).toArray(function (err, result) {
+    db.collection("Events").find({status:"active"}).toArray(function(err, res){
         if (err) throw err;
         // console.log(result);
         res.send(resWrap(result));
