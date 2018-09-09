@@ -137,6 +137,12 @@ form.form-inline.my-2.my-lg-0 {
 	width: 100%;
 	margin-left: -0.3em;
 }
+
+.tags {
+    width: 50%;
+    display: inline-block;
+}
+
 .tag {
 	display: inline-block;
 	padding: 0.3em 0.5em;
@@ -150,6 +156,25 @@ form.form-inline.my-2.my-lg-0 {
 .tag:hover {
 	background-color: #00bcd4;
 	color: white;
+}
+
+.joinBtn {
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    line-height: 1;
+    border: solid 2px #00bcd4;
+    background: #00bcd4;
+    border-radius: 0.9em;
+    margin: 0.2em;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+}
+
+.joinBtn:hover {
+	background-color:white;
+	color:#00bcd4;
+	text-decoration:none;
 }
 
 #createBtn, #userBtn {
