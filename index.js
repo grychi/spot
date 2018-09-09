@@ -156,7 +156,7 @@ app.post('/createEvent', function (req, res) {
 
     db.collection("Events").insertOne(tmp, function (err, result) {
         if (err) throw err;
-        res.send(resDefault);
+        res.send(resWrap(tmp.id));
     });
 
 });
