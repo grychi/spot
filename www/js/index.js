@@ -1,5 +1,7 @@
 var map;
 var baseUrl = "http://10.251.80.142:8012"
+var lat, lon;
+var address = "";
 
 
 document.addEventListener('click', function (e) {
@@ -31,39 +33,27 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 
     document.getElementById("createEventBtn").addEventListener("click", function (e) {
-        var currLoc;
-        console.log('clicked');
-        navigator.geolocation.getCurrentPosition(function (e) {
-            var l = {
-                "lat": e.coords.latitude,
-                "lon": e.coords.longitude
-            }
-            currLoc = l;
+        
+        var tmp = {
+            "username": localStorage.getItem("token"),
+            "eventname": document.getElementById("event-name").value,
+            "description": document.getElementById("event-description").value,
+            "tags": document.getElementById("event-tags").value.split(','),
+            "location": {lat: lat, lng: lon},
+            "address": address,
+            "max": 5,
+            "duration": parseInt(document.getElementById('durationSlider').value)
+        }
+        console.log("tmp", JSON.stringify(tmp));
+        postJSON(tmp, baseUrl + "/createEvent", function (e) {
+            if (e.success) console.log('event created');
 
-            var tmp = {
-                "username": localStorage.getItem("token"),
-                "eventname": document.getElementById("event-name").value,
-                "description": document.getElementById("event-description").value,
-                "tags": document.getElementById("event-tags").value.split(','),
-                "location": currLoc,
-
-                "address": addressSearch(map, currLoc.lat, currLoc.lon),
-                "max": 5,
-                "duration": parseInt(document.getElementById('durationSlider').value)
-            }
-            console.log("tmp", JSON.stringify(tmp));
-            postJSON(tmp, baseUrl + "/createEvent", function (e) {
-                if (e.success) console.log('event created');
-
-            });
-        })
+        });
+    
     });
 
 
 });
-
-
-
 
 function showLoading() {
     document.getElementById("loading-contain").style.display = "block";
@@ -80,11 +70,11 @@ function geocodeLatLng(geocoder, map, infowindow, lat, lon) {
         if (status === 'OK') {
             if (results[0]) {
                 // map.setZoom(11);
-                var marker = new google.maps.Marker({
-                    position: latlng,
-                    map: map
-                });
-
+                // var marker = new google.maps.Marker({
+                //     position: latlng,
+                //     map: map
+                // });
+                address = results[0].formatted_address
                 // infowindow.setContent(results[0].formatted_address);
                 //infowindow.open(map, marker);
             } else {
@@ -93,22 +83,22 @@ function geocodeLatLng(geocoder, map, infowindow, lat, lon) {
         } else {
             window.alert('Geocoder failed due to: ' + status);
         }
-
-        return results[0].formatted_address;
     });
 }
 
 function addressSearch(map, lat, lon) {
     var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow;
-    return geocodeLatLng(geocoder, map, infowindow, lat, lon);
+    geocodeLatLng(geocoder, map, infowindow, lat, lon);
 
 
 }
 
+
+
 function initMap() {
-    var lat = 40.6942036,
-        lon = -73.9887677;
+    lat = 40.6942036;
+    lon = -73.9887677;
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (e) {
             lat = e.coords.latitude;
@@ -123,6 +113,7 @@ function initMap() {
                 if (e.success) {
                     renderMarkers(e.result);
                     showResults(e.result);
+                    addressSearch(map, lat, lon);
                 }
             })
         }, function (e) {
@@ -137,6 +128,8 @@ function initMap() {
                 if (e.success) {
                     renderMarkers(e.result);
                     showResults(e.result);
+                    addressSearch(map, lat, lon);
+
                 }
             })
         })
@@ -153,6 +146,8 @@ function initMap() {
             if (e.success) {
                 renderMarkers(e.result);
                 showResults(e.result);
+                addressSearch(map, lat, lon);
+
             }
         })
     }
@@ -199,7 +194,7 @@ function showResults(e) {
                         <i class="material-icons">
                             pin_drop
                         </i>
-                        <div class="distance"> ` + i.adress
+                        <div class="distance"> ` + i.address
             + `
                         </div>
                     </div>
