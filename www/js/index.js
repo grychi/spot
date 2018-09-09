@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 "description":document.getElementById("event-description").value,
                 "tags":document.getElementById("event-tags").value.split(','),
                 "location": currLoc,
-                "address": addressSearch(map, currLoc.lat, currLoc.lon),
+                "address": addressSearch(map, e.coords.latitude, e.coords.longitude),
                 "max" : 5,
                 "duration": parseInt(document.getElementById('durationSlider').value)
             }

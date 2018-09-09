@@ -46,6 +46,24 @@ function combineArray(eventSearch, tagResult) {
     if (!tagResult) return eventSearch;
     return eventSearch.concat(tagResult);
 }
+
+function timerFunc (){
+    var currentTime = new Date().getTime();
+    
+    db.collection("Events").find({"status": {$is:"active"}}).toArray( function(err, res){
+        for (var i of res){
+
+            if (i.timestamp + (i.duration*60000) > currentTime) {
+                db.collection("Events").updateOne(i, { $set: { status: "expired" } }, function (err, res){
+                    if (err) throw err; 
+                });
+            }
+        }
+    });
+}
+
+setTimeout(timerFunc, 300000);
+
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/www/index.html");
 });
