@@ -230,7 +230,7 @@ app.post('/getEvents', function (req, res) {
 })
 
 app.post('/getProfile', function (req, res){
-    db.collection("Profiles").find({"username":req.body.username}).toArray(function(err, result){
+    db.collection("Profiles").findOne({"username":req.body.username},function(err, result){
         res.send(resWrap(result));
     });
 });
