@@ -106,6 +106,7 @@ function combineArray(eventSearch, tagResult) {
     if (!tagResult) return eventSearch;
     return eventSearch.concat(tagResult);
 }
+
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/www/index.html");
 });
