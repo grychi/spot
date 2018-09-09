@@ -115,9 +115,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
         console.log("tmp", JSON.stringify(tmp));
         postJSON(tmp, baseUrl + "/createEvent", function (e) {
-            if (e.success) location.reload();
-
-
+            if (e.success) {
+                var autoJoin = {
+                    "username": localStorage.getItem("token"),
+                    "eventid": e.result
+                }
+                postJSON(autoJoin, baseUrl + "/joinEvent", function() {
+                    location.reload();
+                })
+            }
         });
 
     });
