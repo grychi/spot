@@ -140,9 +140,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
             executeSearch(e);
         }
     })
-});
 
-// document.addEventListener("keyup", function(e))
+    var targetNode = document.getElementById('results');
+    var config = { attributes: true, childList: true, subtree: true };
+
+    var callback = function (e) {
+        console.log("hello");
+        var messageShow = document.getElementById("needLocation");
+        var message = 'Currently, there are no events near you. Be spontaneous and create a new one!';
+        if (targetNode.innerHTML == '') {
+            messageShow.textContent = message;
+            messageShow.style.display = "block";
+        }
+        else {
+            messageShow.style.display = "none";
+        }
+    };
+
+    var observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
+});
 
 function executeSearch(c) {
     c.preventDefault();
