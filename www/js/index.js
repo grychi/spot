@@ -2,15 +2,15 @@ var map;
 var baseUrl = "http://10.251.80.142:8012"
 
 
-document.addEventListener('click', function(e){
+document.addEventListener('click', function (e) {
     if (e.srcElement.className === "joinBtn") {
         var eventId = e.srcElement.getAttribute("data-id");
         var tmp = {
-             "username":localStorage.getItem("token"),
-             "id": eventId
+            "username": localStorage.getItem("token"),
+            "eventid": eventId
         }
         console.log(tmp);
-        postJSON(tmp, baseUrl+"/joinEvent", function (e){
+        postJSON(tmp, baseUrl + "/joinEvent", function (e) {
             if (e.success) console.log('event joined');
         });
     }
@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
         output.innerHTML = this.value + " minutes";
     }
 
-    document.getElementById("createEventBtn").addEventListener("click", function(e){
+    document.getElementById("createEventBtn").addEventListener("click", function (e) {
         var currLoc;
         console.log('clicked');
-        navigator.geolocation.getCurrentPosition(function(e) {
+        navigator.geolocation.getCurrentPosition(function (e) {
             var l = {
                 "lat": e.coords.latitude,
                 "lon": e.coords.longitude
@@ -41,17 +41,17 @@ document.addEventListener("DOMContentLoaded", function (e) {
             currLoc = l;
 
             var tmp = {
-                "username":localStorage.getItem("token"),
+                "username": localStorage.getItem("token"),
                 "eventname": document.getElementById("event-name").value,
-                "description":document.getElementById("event-description").value,
-                "tags":document.getElementById("event-tags").value.split(','),
+                "description": document.getElementById("event-description").value,
+                "tags": document.getElementById("event-tags").value.split(','),
                 "location": currLoc,
                 "address": addressSearch(map, currLoc.lat, currLoc.lon),
-                "max" : 5,
+                "max": 5,
                 "duration": parseInt(document.getElementById('durationSlider').value)
             }
             console.log("tmp", JSON.stringify(tmp));
-            postJSON(tmp, baseUrl+"/createEvent", function (e){
+            postJSON(tmp, baseUrl + "/createEvent", function (e) {
                 if (e.success) console.log('event created');
 
             });
@@ -74,26 +74,26 @@ function hideLoading() {
 
 function geocodeLatLng(geocoder, map, infowindow, lat, lon) {
 
-    var latlng = {lat: lat, lng: lon};
-    geocoder.geocode({'location': latlng}, function(results, status) {
-      if (status === 'OK') {
-        if (results[0]) {
-          // map.setZoom(11);
-          var marker = new google.maps.Marker({
-            position: latlng,
-            map: map
-          });
-          
-          // infowindow.setContent(results[0].formatted_address);
-          //infowindow.open(map, marker);
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
+    var latlng = { lat: lat, lng: lon };
+    geocoder.geocode({ 'location': latlng }, function (results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                // map.setZoom(11);
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map
+                });
 
-      return results[0].formatted_address;
+                // infowindow.setContent(results[0].formatted_address);
+                //infowindow.open(map, marker);
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+
+        return results[0].formatted_address;
     });
 }
 
@@ -144,7 +144,7 @@ function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
             center: new google.maps.LatLng(lat, lon),
-            
+
             mapTypeId: 'roadmap'
         });
         hideLoading();
@@ -199,7 +199,7 @@ function showResults(e) {
                             pin_drop
                         </i>
                         <div class="distance"> ` + i.adress
- + `
+            + `
                         </div>
                     </div>
                     <div class="creator">
