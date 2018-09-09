@@ -243,10 +243,7 @@ app.post('/search', function (req, res) {
 
     db.collection("Events").find({ "name": { $in: req.body.terms } }).toArray(function (err, result) {
         if (err) throw err;
-        // res.send(resWrap(result));
         nameSearch = result;
-        console.log('name', nameSearch);
-        // console.log(nameSearch); 
         if(tagSearch) {
             console.log(tagSearch); 
             var combinedRes = combineArray(nameSearch, tagSearch)
@@ -258,13 +255,7 @@ app.post('/search', function (req, res) {
     db.collection("Events").find({ "tags": { $in: req.body.terms } }).toArray(function (err, tagResult) {
         if (err) throw err;
         tagSearch =tagResult;
-        console.log('tag', tagSearch);
-
-        // console.log(tagSearch);
-        // res.send(resWrap(tagResult));
         if(nameSearch) {
-            console.log(nameSearch); 
-
             var combinedRes = combineArray(nameSearch, tagSearch)
             res.send(resWrap(combinedRes));
         }

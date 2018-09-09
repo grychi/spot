@@ -131,7 +131,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("event-photo").addEventListener("change", fileToByteArray);
 
 
+    document.getElementById("searchBtn").addEventListener("click", executeSearch);
+
 });
+
+// document.addEventListener("keyup", function(e))
+
+function executeSearch(c) {
+    c.preventDefault();
+    console.log('executeSearch()');
+    showLoading();
+    var transform = {
+        "terms": document.getElementById("searchIn").value.split(' ')
+    }
+    postJSON(transform, baseUrl+"/search", function (e){
+        if(e.success) {
+            showResults(e.result);
+        }
+    })
+}
 
 function showLoading() {
     document.getElementById("loading-contain").style.display = "block";
