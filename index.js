@@ -212,7 +212,7 @@ app.post('/joinEvent', function (req, res) {
 
 app.get('/getEvents', function (req, res) {
     //return all events based on search name 
-    db.collection("Events").find({status:"active"}).toArray(function(err, res){
+    db.collection("Events").find({status:"active"}).toArray(function(err, result){
         if (err) throw err;
         // console.log(result);
         res.send(resWrap(result));
