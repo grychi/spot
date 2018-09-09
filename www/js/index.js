@@ -9,7 +9,7 @@ document.addEventListener('click', function(e){
              "username":localStorage.getItem("token"),
              "id": eventId
         }
-        
+        console.log(tmp);
         postJSON(tmp, baseUrl+"/joinEvent", function (e){
             if (e.success) console.log('event joined');
         });
@@ -212,7 +212,7 @@ function showResults(e) {
             </div>
             <hr>
             <div class="tags">` + tagsHTML + `</div>
-            <button class="joinBtn" data-id=${i._id}>join →</button>
+            <button class="joinBtn" data-id=${i.id}>join →</button>
         </div>
     </div>`;
         tmp.innerHTML = baseHTML;
