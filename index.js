@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var mongoClient = require('mongodb').MongoClient;
 var crypto = require('crypto');
 
-app.use(bodyParser.json({ limit: '8mb' }));
+app.use(bodyParser.json({ useNewUrlParser: true, limit: '8mb' }));
 app.use(cors());
 
 app.use(express.static(__dirname + '/www'));
@@ -22,18 +22,18 @@ mongoClient.connect(mongodb, function (err, client) {
 });
 
 var CronJob = require('cron').CronJob;
-var job = new CronJob('* */1 * * *', function() {
+var job = new CronJob('* */1 * * *', function () {
     var currentTime = new Date().getTime();
-    
-    db.collection("Events").find({status:"active"}).toArray(function(err, res){
-        if (err) { throw(err); }
-        
-        for (var i of res){
-            var testTime = new Date(i.timestamp + (i.duration*60000));
-            
+
+    db.collection("Events").find({ status: "active" }).toArray(function (err, res) {
+        if (err) { throw (err); }
+
+        for (var i of res) {
+            var testTime = new Date(i.timestamp + (i.duration * 60000));
+
             if (testTime < currentTime) {
-                db.collection("Events").updateOne(i, { $set: { status: "expired" } }, function (err, res){
-                    if (err) throw err; 
+                db.collection("Events").updateOne(i, { $set: { status: "expired" } }, function (err, res) {
+                    if (err) throw err;
                 });
             }
         }
@@ -127,7 +127,7 @@ app.post('/register', function (req, res) {
         else {
             db.collection("Users").insertOne(tmp, function (err, result) {
                 if (err) throw err;
-                db.collection("Profiles").insertOne({ username: req.body.username, attended:[] }, function (err, result) {
+                db.collection("Profiles").insertOne({ username: req.body.username, attended: [] }, function (err, result) {
                     if (err) throw err;
                     res.send(resDefault);
                 });
@@ -182,11 +182,14 @@ app.post('/joinEvent', function (req, res) {
         else {
             // check if user already an attendee
 
-            db.collection("Events").find({ attendees: username }, function (err, result) {
+            /*
+            db.collection("Events").find({ attendees: username }).toArray(function (err, result) {
                 if (err) throw err;
-                res.send(errWrap("User is already an attendee"));
+                if (result.length) {
+                    res.send(errWrap("User is already an attendee"));
+                }
             });
-
+            */
 
             // update attendees in events
             var attendees = result.attendees;
@@ -212,7 +215,7 @@ app.post('/joinEvent', function (req, res) {
 
 app.get('/getEvents', function (req, res) {
     //return all events based on search name 
-    db.collection("Events").find({status:"active"}).toArray(function(err, result){
+    db.collection("Events").find({ status: "active" }).toArray(function (err, result) {
         if (err) throw err;
         // console.log(result);
         res.send(resWrap(result));
