@@ -1,9 +1,23 @@
 var map;
 var baseUrl = "http://10.251.80.142:8012"
 
+
+document.addEventListener('click', function(e){
+    if (e.srcElement.className === "joinBtn") {
+        var eventId = e.srcElement.getAttribute("data-id");
+        var tmp = {
+             "username":localStorage.getItem("token"),
+             "id": eventId
+        }
+        
+        postJSON(tmp, baseUrl+"/joinEvent", function (e){
+            if (e.success) console.log('event joined');
+        });
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function (e) {
     // initMap();
-
     if (!window.localStorage.getItem("token")) {
         window.location.href = "login.html"
     };
@@ -15,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     slider.oninput = function () {
         output.innerHTML = this.value + " minutes";
     }
+
     document.getElementById("createEventBtn").addEventListener("click", function(e){
         var currLoc;
         console.log('clicked');
@@ -26,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
             currLoc = l;
 
             var tmp = {
-
                 "username":localStorage.getItem("token"),
                 "eventname": document.getElementById("event-name").value,
                 "description":document.getElementById("event-description").value,
@@ -42,9 +56,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             });
         })
-        
     });
+
+
 });
+
+
 
 
 function showLoading() {
@@ -195,7 +212,7 @@ function showResults(e) {
             </div>
             <hr>
             <div class="tags">` + tagsHTML + `</div>
-            <a href="/join" class="joinBtn">join →</a>
+            <button class="joinBtn" data-id=${i._id}>join →</button>
         </div>
     </div>`;
         tmp.innerHTML = baseHTML;
