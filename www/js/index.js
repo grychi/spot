@@ -17,7 +17,7 @@ document.addEventListener('click', function (e) {
             if (e.success) console.log('event joined');
         });
     }
-    else if(e.srcElement.className === 'username') {
+    else if (e.srcElement.className === 'username') {
         viewProf(e.target.textContent);
     }
 });
@@ -47,10 +47,10 @@ function renderEvents(title, img = "http://2014s.pennapps.com/build/images/logo/
 }
 
 function viewProf(uname) {
+    document.getElementById("profilePersonName").textContent = uname;
     var viewProf = {
         "username": uname
     }
-
     postJSON(viewProf, baseUrl + '/getProfile', function (e) {
         if (e.success) {
             var toRender = document.getElementById("profHistory");
@@ -92,7 +92,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
         output.innerHTML = this.value + " minutes";
     }
 
-    viewProf(localStorage.getItem("token"));
+    document.getElementById("toViewMyProfile").textContent = localStorage.getItem("token");
+    document.getElementById("toViewMyProfile").addEventListener("click", function (e) {
+        viewProf(localStorage.getItem("token"));
+    })
 
     document.getElementById("createEventBtn").addEventListener("click", function (e) {
         var tmpImg = imgByteArrToString(fileBytes[0]);
@@ -177,9 +180,6 @@ function fileToByteArray(e) {
         reader.readAsArrayBuffer(f);
     }
 };
-
-
-
 
 function initMap() {
     lat = 40.6942036;
