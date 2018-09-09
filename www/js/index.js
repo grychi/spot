@@ -145,21 +145,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
     var config = { attributes: true, childList: true, subtree: true };
 
     var callback = function (e) {
-        console.log("hello");
-        var messageShow = document.getElementById("needLocation");
-        var message = 'Currently, there are no events near you. Be spontaneous and create a new one!';
-        if (targetNode.innerHTML == '') {
-            messageShow.textContent = message;
-            messageShow.style.display = "block";
-        }
-        else {
-            messageShow.style.display = "none";
-        }
+        isThereResults();
     };
 
     var observer = new MutationObserver(callback);
     observer.observe(targetNode, config);
 });
+
+function isThereResults() {
+    var messageShow = document.getElementById("needLocation");
+    var message = 'Currently, there are no events near you. Be spontaneous and create a new one!';
+    if (document.getElementById('results').innerHTML == '') {
+        messageShow.textContent = message;
+        messageShow.style.display = "block";
+    }
+    else {
+        messageShow.style.display = "none";
+    }
+}
 
 function executeSearch(c) {
     c.preventDefault();
@@ -246,6 +249,7 @@ function initMap() {
                     renderMarkers(e.result);
                     showResults(e.result);
                     addressSearch(map, lat, lon);
+                    isThereResults();
                 }
             })
         }, function (e) {
@@ -261,7 +265,7 @@ function initMap() {
                     renderMarkers(e.result);
                     showResults(e.result);
                     addressSearch(map, lat, lon);
-
+                    isThereResults();
                 }
             })
         })
@@ -279,7 +283,7 @@ function initMap() {
                 renderMarkers(e.result);
                 showResults(e.result);
                 addressSearch(map, lat, lon);
-
+                isThereResults();
             }
         })
     }
@@ -342,7 +346,7 @@ function showResults(e) {
             <hr>
             <div class="tags">` + tagsHTML + `</div>`;
         if (!i.attendees.includes(localStorage.getItem("token"))) {
-            baseHTML += '<button class="joinBtn" data-id=${i.id}>join →</button>';
+            baseHTML += `<button class="joinBtn" data-id=${i.id}>join →</button>`;
         }
         baseHTML += `
         </div>
