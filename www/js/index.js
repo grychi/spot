@@ -4,7 +4,6 @@ var lat, lon;
 var address = "";
 var fileBytes = [];
 
-
 document.addEventListener('click', function (e) {
     if (e.srcElement.className === "joinBtn") {
         var eventId = e.srcElement.getAttribute("data-id");
@@ -120,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     "username": localStorage.getItem("token"),
                     "eventid": e.result
                 }
-                postJSON(autoJoin, baseUrl + "/joinEvent", function() {
+                postJSON(autoJoin, baseUrl + "/joinEvent", function () {
                     location.reload();
                 })
             }
@@ -130,9 +129,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("event-photo").addEventListener("change", fileToByteArray);
 
-
     document.getElementById("searchBtn").addEventListener("click", executeSearch);
-
+    document.addEventListener("keyup", function(e) {
+        if(e.keyCode == 13 && document.activeElement.id == "search") {
+            executeSearch(e);
+        }
+    })
 });
 
 // document.addEventListener("keyup", function(e))
@@ -144,8 +146,8 @@ function executeSearch(c) {
     var transform = {
         "terms": document.getElementById("searchIn").value.split(' ')
     }
-    postJSON(transform, baseUrl+"/search", function (e){
-        if(e.success) {
+    postJSON(transform, baseUrl + "/search", function (e) {
+        if (e.success) {
             showResults(e.result);
         }
     })
