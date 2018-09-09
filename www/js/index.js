@@ -141,7 +141,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 function executeSearch(c) {
     c.preventDefault();
-    console.log('executeSearch()');
     showLoading();
     var transform = {
         "terms": document.getElementById("searchIn").value.split(' ')
