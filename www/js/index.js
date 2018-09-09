@@ -135,8 +135,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("event-photo").addEventListener("change", fileToByteArray);
 
     document.getElementById("searchBtn").addEventListener("click", executeSearch);
-    document.addEventListener("keyup", function(e) {
-        if(e.keyCode == 13 && document.activeElement.id == "searchIn") {
+    document.addEventListener("keyup", function (e) {
+        if (e.keyCode == 13 && document.activeElement.id == "searchIn") {
             executeSearch(e);
         }
     })
@@ -311,8 +311,7 @@ function showResults(e) {
                         <i class="material-icons">
                             pin_drop
                         </i>
-                        <div class="distance"> ` + i.address
-            + `
+                        <div class="distance"> ` + i.address + `
                         </div>
                     </div>
                     <div class="creator">
@@ -324,8 +323,11 @@ function showResults(e) {
                 </div>
             </div>
             <hr>
-            <div class="tags">` + tagsHTML + `</div>
-            <button class="joinBtn" data-id=${i.id}>join →</button>
+            <div class="tags">` + tagsHTML + `</div>`;
+        if (!i.attendees.includes(localStorage.getItem("token"))) {
+            baseHTML += '<button class="joinBtn" data-id=${i.id}>join →</button>';
+        }
+        baseHTML += `
         </div>
     </div>`;
         tmp.innerHTML = baseHTML;
