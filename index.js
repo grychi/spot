@@ -222,40 +222,58 @@ app.get('/getEvents', function (req, res) {
     });
 
 });
+app.post('/getEvents', function (req, res) {
+    db.collection("Events").find({ "id" : { $in: req.body.ids}}).toArray(function (err, result) {
+        if(err) throw err;
+        res.send(resWrap(result));
+    })
+})
 
-app.get('/getUsers', function (req, res) {
-    // return all the users
-    db.collection("Users").distinct("username", function (err, result) {
-        if (err) throw err;
-        res.send(result);
+app.post('/getProfile', function (req, res){
+    db.collection("Profiles").find({"username":req.body.username}).toArray(function(err, result){
+        res.send(resWrap(result));
     });
 });
+
 
 app.post('/search', function (req, res) {
     // search on events with names
     var nameSearch;
-    var tagSearch;
+    var tagSearch ;
+
     db.collection("Events").find({ "name": { $in: req.body.terms } }).toArray(function (err, result) {
         if (err) throw err;
         // res.send(resWrap(result));
         nameSearch = result;
+        console.log('name', nameSearch);
         // console.log(nameSearch); 
+        if(tagSearch) {
+            console.log(tagSearch); 
+            var combinedRes = combineArray(nameSearch, tagSearch)
+            res.send(resWrap(combinedRes));
+        }
     });
-
-
+    
     // search on tags
     db.collection("Events").find({ "tags": { $in: req.body.terms } }).toArray(function (err, tagResult) {
         if (err) throw err;
-        tagSearch = tagResult;
+        tagSearch =tagResult;
+        console.log('tag', tagSearch);
+
         // console.log(tagSearch);
         // res.send(resWrap(tagResult));
+        if(nameSearch) {
+            console.log(nameSearch); 
+
+            var combinedRes = combineArray(nameSearch, tagSearch)
+            res.send(resWrap(combinedRes));
+        }
     });
-    console.log(tagSearch);
-    console.log(nameSearch);
-    var combinedRes = combineArray(nameSearch, tagSearch)
-    console.log('combined' + combinedRes);
-    res.send(resWrap(combinedRes));
+  
+    
 });
+
+
 app.listen(port, function () {
     // console.log('index.js');
 });

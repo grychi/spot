@@ -88,10 +88,10 @@ function geocodeLatLng(geocoder, map, infowindow, lat, lon) {
         if (status === 'OK') {
             if (results[0]) {
                 // map.setZoom(11);
-                // var marker = new google.maps.Marker({
-                //     position: latlng,
-                //     map: map
-                // });
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map
+                });
                 address = results[0].formatted_address
                 // infowindow.setContent(results[0].formatted_address);
                 //infowindow.open(map, marker);
