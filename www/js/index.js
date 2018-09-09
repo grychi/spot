@@ -46,13 +46,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 "description": document.getElementById("event-description").value,
                 "tags": document.getElementById("event-tags").value.split(','),
                 "location": currLoc,
-<<<<<<< HEAD
-                "address": addressSearch(map, e.coords.latitude, e.coords.longitude),
-                "max" : 5,
-=======
+
                 "address": addressSearch(map, currLoc.lat, currLoc.lon),
                 "max": 5,
->>>>>>> f5bcc0d885cfb7ad8c79213bc826124f410d3e40
                 "duration": parseInt(document.getElementById('durationSlider').value)
             }
             console.log("tmp", JSON.stringify(tmp));
