@@ -19,6 +19,11 @@ document.addEventListener('click', function (e) {
     else if (e.srcElement.className === 'username') {
         viewProf(e.target.textContent);
     }
+    else if (e.srcElement.className === 'tag') {
+        console.log
+        document.getElementById('searchIn').value = e.srcElement.textContent;
+        document.getElementById('searchBtn').click();
+    }
 });
 
 function imgByteArrToString(buffer) {
@@ -131,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("searchBtn").addEventListener("click", executeSearch);
     document.addEventListener("keyup", function(e) {
-        if(e.keyCode == 13 && document.activeElement.id == "search") {
+        if(e.keyCode == 13 && document.activeElement.id == "searchIn") {
             executeSearch(e);
         }
     })
