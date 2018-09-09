@@ -17,6 +17,9 @@ document.addEventListener('click', function (e) {
             if (e.success) console.log('event joined');
         });
     }
+    else if(e.srcElement.className === 'username') {
+        viewProf(e.target.textContent);
+    }
 });
 
 function imgByteArrToString(buffer) {
@@ -56,6 +59,7 @@ function viewProf(uname) {
                 "ids": e.result.attended
             }
             postJSON(getHistory, baseUrl + '/getEvents', function (d) {
+                var theHTML = '';
                 if (d.success) {
                     for (var i of d.result) {
                         var base64Img = 'data:image/png;base64, ';
@@ -285,7 +289,7 @@ function showResults(e) {
                         <i class="material-icons">
                             account_circle
                         </i>
-                        <div class="username">` + i.creator + `</div>
+                        <div data-toggle="modal" data-target="#michelle" class="username">` + i.creator + `</div>
                     </div>
                 </div>
             </div>
